@@ -1,0 +1,57 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+}
+.container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    /*원근감있게 보여주는 css속성: 기본적으로 가장 최상위 태그에 지정*/
+    perspective: 1000px; /*카메라의 위치(보는 관점):perspective의 값이 작으면 작을 수록 가까이, 클수록 멀리 서 보인다. */
+}
+
+.flip-btn{
+    width: 200px;
+    height: 100px;
+    color : white;
+    text-align: center; /*가로 중앙 */
+    line-height: 100px; /* 세로 중앙: 요소의 height값과 line-height 값이 같으면 한 줄짜리 text에 한해서는 수직중앙 정렬된다. */
+    /*2d기본인데 3d표현을 가능하게 하는 요소들 */ 
+    /*flip-btn하위태그들은 3d공간에 배치가 됩니다. */
+    transform-style: preserve-3d;
+    transition: .5s;
+    cursor: pointer;
+}
+.flip-btn:hover{
+    transform: rotateX(-90deg);
+}
+.front{
+    background-color: goldenrod;
+    height: 100px;
+    transform:translteZ(50px);/* 모니터방향으로 옴*/
+}
+.back{
+    background-color: darkgoldenrod;
+    height: 100px;
+    /*translatez 를 하면 왜 위아래? x축을 90도로 회전하면, z축이 위로 향하도록 변경이 된다는 것 
+    즉 어떤 요소를 회전시키면 그에 따른 x,y,z축도 유동적으로 움직인다는 것이죠. 
+    즉 초기 x축회전을 안했을 때는 z축은 모니터를 향하지만 90도회전한 상황에서는 z축이 위를 향하고 있는 거죠.*/
+    /* 왜 150px?? 현재 x축 90도 회전을 하여 back 태그 가 원래 100px인데 완전히 눕혀진 상태 즉, 
+    전체 100px중 50px 만큼 front와 떨어진 상태로 눕혀있기 때문에 z축으로 150px 이동하면 완전히 front의 최상단 부분과 겹치면서 사라진다. */
+    transform: rotateX(90deg) translateZ(150px);
+}
+
+/*
+3D관련 참고 자료
+
+1. http://asq.kr/QIjicDr7rPLQ
+2. http://asq.kr/Sro4Y1eNXsq6
+3. http://asq.kr/zWNVfupYE2wb
+4. http://asq.kr/V84aVDa6DfFy
+*/
